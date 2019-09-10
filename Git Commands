@@ -1,0 +1,289 @@
+
+
+git init
+
+After git there will be three phases created :
+
+1 working directory
+2 staging phase
+3 local repo
+
+we will push to remote from local repo and not from working directory
+
+
+git configuration means telling git that who is committing , who is writing , who is modifying  the program
+
+3 levels :
+
+system level : git config --system
+user level ;entire user directory : git config --global
+project level : only project dir : git config
+
+User level :
+
+git config --global user.name/user.email/core.editor/color.ui true
+
+to see our configurations :
+git config --list
+
+
+TO put the file into our local repo
+ we must add the file to staging area(files will be in green color)
+ after staging area to local repo::
+
+git add filename (staging area)
+git commit -m "relavant message"
+
+to see our commit 
+git log
+
+it will give commit number(sha1 -40chars -hexadecimal) which is nothing but like revision number
+
+to see what we have commited
+git show commitnumber
+
+no need write all 40 numbers everytime to see content
+just write first six chars of commit number
+
+
+if more number of untracked files are in the folder
+no need to add single single file
+just dio :
+ 
+git add .
+
+it will take all the untrcked files in the dir to staging area
+
+working directory clean means : all my files are in my local repository
+
+
+git doesn't track empty directories . It checks if whether there is any content or not
+
+
+To see difference between two commits
+
+git diff commitnumber..commitnumber
+
+to see all branches in alphabetical order :
+
+git branch
+
+* represents present standing branch
+
+to switch b/w branches :
+
+git checkout destbranchname
+
+to do this at a time :
+
+git checkout -b branchname
+
+
+branches and master are two different paths ;
+if a file is created after the branch is created.this file will not contain this newfile
+if a file is modified or created in brach , the other branches too dont know about it 
+
+you can see diff b/w branches too using diff
+
+
+
+
+
+you can merge using:
+
+git merge brachnamewhich is to be merged
+
+u should be in destination branch to merge
+
+
+
+if you modify some file in master and if you open it in another brancgh the modified new is automatically shown
+
+but if you modify some file in master and if you open it in another brancgh the modified new is not shown
+
+
+#####################################       BRANCH  #############################################
+Create branch locally and push to remote :
+
+git branch branchname
+
+git push -u orign branchname
+
+you can delete a branch using :
+
+git branch -d branchname
+
+
+TO push this info to remote to delete the branch there also then :
+
+git push orign :branchname
+
+TO delete a branch which is in remote from lcoal : 
+
+git push --delete origin branchname
+
+IF you delete branch locally and then used above command gives error 
+
+*************************************************************************************
+
+TO get the changes of remote branch if deleted : 
+
+git fetch -p  #This will update the local database of remote branches.
+
+git branch -vv # gives list of branches about their state ex : deleted branch ->  [origin/branchname :gone]
+
+git branch --unset-upstream branchname     # unsets the upstream and if you see branch  -vv then you will get its last commit msg only 
+
+BE IN THE TARGET BRANCH 
+
+git branch -vv | grep -v "origin/" >> output.txt   # copies the lines which doesnot contain the origin as a string into the output.txt
+
+so you can take out the first column the output.txt which contains the branch names so you can delete locally by manually.
+
+you should be in another branch while deletign a branch
+
+**********************************************************************************************
+
+
+
+you can use git to track any type of content. You can create a Git NoSQL database for example. That works, but you're now using the file system as a database: paths are the keys, values are whatever you store in them.
+
+
+
+A maximum of 1GB of storage will be provided for each user in github . If crosses it , we will get an email to reduce the repository size .
+And a file also must not more 100 MB large,If uploaded from a browser then it should be within 25MB.
+
+As of June 2018, GitHub reports having over 28 million users and 57 million repositories (including 28 million public repositories), making it the largest host of source code in the world.
+
+
+###############  view project at specific commit in git [duplicate] #########################33
+
+
+git checkout
+
+git checkout
+git checkout <commit_id>
+git checkout -b <new branch> <commit_id>
+git checkout HEAD~X // x is the number of commits t go back
+
+This will checkout new branch pointing to the desired commit. This command will checkout to a given commit. At this point you can create a branch and start to work from this point on.
+
+# Checkout a given commit. 
+# Doing so will result in a `detached HEAD` which mean that the `HEAD`
+# is not pointing to the latest so you will need to checkout branch
+#in order to be able to update the code.
+git checkout <commit-id>
+
+# create a new branch forked to the given commit
+git checkout -b <branch name>
+
+git reset HEAD --hard <commit_id>
+
+"Move" your head back to the desired commit.
+
+# This will destroy any local modifications.
+# Don't do it if you have uncommitted work you want to keep.
+git reset --hard 0d1d7fc32
+
+How to view specific commit witout effecting the current branch?
+From git v2.5
+
+git worktree add <new_path>
+
+git worktree will create 2 separate working folders separated from each other while pointing to the same repository.
+
+This will allow you do to any experintals on the enw worktree without having any effect on the repository itself.
+
+
+
+########################################## MERGE ###########################################################3
+
+A git pull is going to run a git fetch and then a git merge . If you want to bring your local repository up to speed with a remote repository that is what you would run. A git fetch is going to import commits from a remote repo without merging them, which gives you the opportunity to review them before integrating
+
+https://stackoverflow.com/questions/21756614/difference-between-git-merge-origin-master-and-git-pull
+
+
+
+If you create a branch in one branch1 locally and push it through another branch2 then branch will get files from branch1 only .
+
+CLean branches merge chesinapudu , total commits = commits of branch1 from its last commits did for push or pushed commits and present merge commit
+
+https://stackoverflow.com/questions/24619007/git-push-deleted-branch-to-remote
+
+https://stackoverflow.com/questions/14011046/what-happens-to-source-and-destination-branches-after-git-merge
+
+########################################## MERGE REQUEST ###########################################################
+
+
+You can't create a merge requst from command line or locally .
+
+Either you have to use GUI or giltab api's 
+
+ 
+USING GUI :
+
+when creating a reuqest :
+
+commits :  last pushed commits of both the branches( source and target )
+
+
+
+
+EVENTS :
+-----------
+
+
+TAG EVENTS :
+-------------
+
+we will create tags to commits .. 
+if not created they will be automatically creatd with v(version num)- no of commits - some SHA ex : v1.0-2-9ghe8hf
+
+TO create tag :
+
+$ git tag tagname
+
+to push tag :
+
+$ git push origin tag version
+
+https://dev.to/neshaz/a-tutorial-for-tagging-releases-in-git-147e
+
+
+see the scribbling pad notes 
+
+
+COMMENTS EVENTS :
+------------------
+
+https://docs.gitlab.com/ee/user/project/integrations/webhooks.html#comment-on-merge-request
+
+
+WIKI :
+---------
+
+https://docs.gitlab.com/ee/user/project/wiki/
+
+https://help.github.com/en/articles/adding-or-editing-wiki-pages
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

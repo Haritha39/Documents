@@ -1,0 +1,6 @@
+https://docs.gitlab.com/ce/api/system_hooks.html
+
+create webhook using access token
+
+curl -k --request POST --header "PRIVATE-TOKEN: PxjoftM5_KAg8PUcxJG1" --data "pipeline_events=true" http://192.168.4.219:30080/api/v4/projects/7/hooks?url="http://786.235.34.3:8000/mysql"
+

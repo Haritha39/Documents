@@ -1,0 +1,29 @@
+
+<html>
+<head></head>
+<body>
+
+	{# define and intialize our variables outside the loop #}
+	{% set kidSeatTotal = 0 %}
+	{% set parentSeatTotal = 0 %}
+
+	{# loop over the seatCounts and add them up #}
+	{% for seatCount in thing %}
+	  {% set kidSeatTotal = kidSeatTotal + seatCount.seatsKids %}
+	  {% set parentSeatTotal = parentSeatTotal + seatCount.seatsParents %}
+	{% endfor %}
+
+	{# maybe we want the grand total as well #}
+	{% set grandSeatTotal = kidSeatTotal + parentSeatTotal %}
+
+	{# now we can output them: #}
+	kid seat total: {{ kidSeatTotal }}
+	parent seat total: {{ parentSeatTotal }}
+	grand total: {{ grandSeatTotal }}
+</body>
+
+
+
+</html>
+
+

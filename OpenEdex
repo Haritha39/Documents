@@ -1,0 +1,51 @@
+https://edx.readthedocs.io/projects/edx-installing-configuring-and-running/en/latest/installation/install_devstack.html
+https://openedx.atlassian.net/browse/PLAT-2448
+
+3.1.1. Open edX Platform on Docker
+
+You can install the Open edX developer stack (Devstack) or the Open edX analytics developer stack (Analytics Devstack).
+
+    Devstack is a set of Docker containers designed for local development. For more information, see Open edX Devstack.
+    Analytics Devstack is a modified version of the Devstack installation that allows you to run Open edX Analytics. For more information, see Open edX Analytics Devstack.
+
+You can run Devstack or Analytics Devstack on Linux or macOS. See the Docker downloads page for information about the operating systems and architectures on which you can run Docker.
+Open edX Devstack
+
+Devstack is a deployment of the Open edX platform within a set of Docker containers designed for local development. Running the Open edX platform locally allows you to discover and fix system configuration issues early in development.
+
+Devstack simplifies certain production settings to make development more convenient. For example, nginx and gunicorn are disabled in Devstack; Devstack uses Django’s runserver instead.
+
+Note
+
+Because of the large number of dependencies needed to develop extensions to Open edX Insights, a separate development environment is available to support Analytics development. For more information, see Installing and Starting Analytics Devstack.
+
+For more information about Docker, see the Docker documentation.
+
+
+
+teps to Reproduce:
+
+    Clone open-release/hawthorn.master branch of devstack and _configuration _
+
+    $ git clone --single-branch -b open-release/hawthorn.master https://github.com/edx/devstack.git
+    $ git clone --single-branch -b open-release/hawthorn.master https://github.com/edx/configuration.git
+
+    Set environment variable for OPENEDX_RELEASE
+
+    $ export OPENEDX_RELEASE=hawthorn.master
+
+    Go to configuration repo directory and build edxapp image
+
+    $ cd configuration/
+    $ docker build --no-cache -t edxops/edxapp:hawthorn.master -f docker/build/edxapp/Dockerfile .
+
+    Go to devstack repo directory, follow the instructions in readme
+
+    $ cd ../devstack
+    $ make requirements
+    $ make dev.clone
+    $ make dev.provision
+
+Expected Behavior:
+
+Provision finishes successfully.

@@ -1,0 +1,252 @@
+
+
+ - Python will fall under byte code interpreted. .py. source code is first compiled to byte code as .pyc .
+
+ - Python is slow compared to other languages .
+
+ - In pratice  , it is fast .
+
+********** print() ****************
+
+you can use "" , '' ,"""""" in print statement .
+
+
+********** VARIABLES ****************
+
+ - we don't need to declare variables explicitly , they are dynamic
+
+ - should start with alphabets or underscore
+
+ - numbers can be in between only
+
+
+
+*******************************************
+
+After functions , for ,while loop we give : and if we enter it will directly moves the cursor a tab space forward in the next line . 
+
+at the right bottom , change the setting to convert indentation to spaces .  this makes that if you open this fil form github or elsewhere it wont lose the indentation 
+
+and spaces . if you highlight the tab spce now you will see the dots instead of line  .
+
+
+Tuples are immutable whereas lists are mutable(we can change anytime ) .
+
+https://www.quora.com/What-is-the-difference-between-mutable-and-immutable-in-Python
+
+Mutable = list , dictionary
+
+Immutable = tuple , strings , bool , number
+
+
+************************ LISTS **********************
+
+Index starts from 0.
+
+It is mutable .
+
+access elements  :  listname[indexnumber]
+
+In lists  , each element id is differenced by  48 numbers
+
+
+********************* id(parameter) ***************
+
+id() gives a unique identity of the object passed to it and have that unique id through the program life time .
+
+it is like the memory address concept in c .
+
+whatever the value is storing into the variable , it's id will be the id of the variable
+
+
+******************* For , While loop *******************
+
+for loop iterates over the range or list of items
+while checks for condition
+
+
+*************** Enumerate ********************
+
+it returns an object containing both the index value and the value in the index
+maintian counter for a iterabel object
+ Enumerate will give both index numbers and the values in the index
+It wont work as variable is not iterabele
+enumerate(iterable , start =0 )
+start is optional .  Default is 0. YOu can give any number later
+
+
+
+SYS :
+
+https://docs.python.org/3/library/sys.html --see this 
+
+This module provides access to some variables used or maintained by the interpreter and to functions that interact strongly with the interpreter. It is always available.
+import sys
+print(sys.version)  - to get version of python
+sys.argv - to take command line arguments
+
+
+TO stop python in cmd : >> quit()
+
+
+Error Handling /  Exception handling :
+
+handling the errors occurs in the program
+
+try:
+
+	raise: # to raise your own execption in some of the cases along with the error coming from the compiler
+
+except someexecption as variable:
+	raise : # to reraise the exception in this execption
+
+except someexecption as variable:
+
+except someexecption as variable:
+
+else:
+
+finally:
+
+
+count():
+
+string.count(substring) => it counts number of times the substring occuring in the string and returns that integer
+listvar.count(0) => counts how many zeroes are there in listvar
+
+
+len():
+
+gives the length of the list , string . count starts from 1 .
+ex :  str = "hello" len(str) = 5
+
+
+declaring a array:
+
+arrayname = []
+
+
+reversed():
+
+reverses a list . it doesn't returns a sequence/list but returns a iterable.
+
+zip():
+
+it combines different lists or different things into one .
+
+ex : 
+list1 = [1,2,3]
+list2 = [4,5,6]
+
+print(zip(list1,list2)) # returns a zip object
+
+for inx in zip(list1,list2):
+	print(inx)
+>> (1,4),(2,5),(3,6)
+
+\ escape sequence :
+
+escapes the character from doing its functionality
+
+\' -> prints-> '
+
+f with print :
+
+It will be worked form the version 3.6 only .
+
+you can print variables along with the string in print statement.
+
+ex : print(f"hi {variablename}")
+
+
+itertools:
+
+this is a library it contains iterable functions.
+
+import itertools
+
+p = itertools.cycle([1,2]) -> rotates over these two elements
+
+next(p) => points to next element
+
+_(underscore):
+
+it is used when u dont need the return value from a function , but to store it 
+
+
+TO install python git library:
+
+sudo pip install gitpython
+
+to pprint a dictionary ,
+
+pprint.pprint(dicname)
+
+normal pprint will not work
+
+
+******* DIFF b/w input and raw_input
+
+raw_input : This function works in older version (like Python 2.x). This function takes exactly what is typed from the keyboard, convert it to string and then return it to the variable in which we want to store.
+
+input : This function first takes the input from the user and then evaluates the expression, which means Python automatically identifies whether user entered a string or a number or list. If the input provided is not correct then either syntax error or exception is raised by python.BUt eventully take input as string only . so we have to typecast.
+
+
+Configuration files :
+
+https://martin-thoma.com/configuration-files-in-python/
+
+
+
+Logging:
+
+https://docs.python.org/2/howto/logging.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,21 @@
+To create and open a file & To open a existing file
+
+$ vi filename
+
+To insert data
+
+$ press 'i'
+
+To append data
+
+$ press 'a'
+
+To save the script
+
+$ press 'ESC' and then enter 'wq'
+
+To quit 
+
+$ press 'ESC' and then enter 'q'
+
+

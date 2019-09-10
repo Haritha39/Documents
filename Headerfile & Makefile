@@ -1,0 +1,174 @@
+
+
+	Usage :	
+
+	if your are implementing a stack program on main.c 
+
+	main.c does'nt to initialize the variables or declaring functions that many times for every compilation .
+
+	YOu can do it like :
+
+	main.c - for calling or do the final exact work we want
+
+	stack.c - for function definition code of building a stack .
+
+	stack.h - to declare functions are variables that are needed in main.c or stack.c
+
+
+	Compilation : 
+
+	to compile this u have to compile both the main.c and stack.c
+
+	THree ways to compile :
+
+	1)
+
+	   gcc main.c stack.c
+	  
+	   creates the a.out
+
+	2)
+
+	   gcc -Wall -c main.c
+	  
+	   gcc -Wall -c stack.c
+
+	   creates main.o and stack.o
+
+	   gcc -Wall -o stack.out main.o stack.o
+
+	   creates stack.out file which is executable
+
+	   main.o and stack.o means object files that contains the compiled program in machine language .
+
+	3) 
+
+	   gcc -o a.out main.c stack.c -I
+
+	   -I searches for the stack.h in the current directory .
+
+
+	URL  :	http://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/
+
+
+
+	MAKE FILE : 
+
+		You can use write the makefile based on your requirement .
+
+		Rules must be written after a tab space gap from starting of the line.
+
+		You can compile your program in the below different ways :
+
+
+	1)	just type :
+
+		all : main.c stack.c
+			gcc main.c stack.c
+
+		Automatically creates a.out file
+
+	2)  
+
+		a.out : main.c stack.c
+			gcc -o a.out main.c stack.c
+
+		gives the a.out file
+
+	3)  
+
+		a.out : main.o stack.o
+			gcc -o a.out main.o stack.o
+
+		does same as 1 . It automatically knows to first compile .c files and then .o files
+
+
+************************************************* NOTE ******************************************************************
+
+ 
+I have a 2 modules (.c files) and one .h header file:
+
+file1.c:
+
+#include <stdio.h>
+#include "global.h"
+
+int main()
+{
+    i = 100;
+    printf("%d\n",i);
+    foo();
+    return 0;
+}
+
+file2.c
+
+#include <stdio.h>
+#include "global.h"
+
+void foo()
+{
+    i = 10;
+    printf("%d\n",i);
+}
+
+global.h
+
+int i;
+extern void foo()
+
+When I do gcc file1.c file2.c everything works fine and I get the expected output. Now, when I initialize variable 'i' in the header file to say 0 and compile again I get a linker error:
+
+/tmp/cc0oj7yA.o:(.bss+0x0): multiple definition of `i'
+/tmp/cckd7TTI.o:(.bss+0x0): first defined here
+
+======================================================================================================================================
+ANSWER
+
+
+
+There are 3 scenarios, you describe:
+
+    with 2 .c files and with int i; in the header.
+    With 2 .c files and with int i=100; in the header (or any other value; that doesn't matter).
+    With 1 .c file and with int i=100; in the header.
+
+In each scenario, imagine the contents of the header file inserted into the .c file and this .c file compiled into a .o file and then these linked together.
+
+Then following happens:
+
+    works fine because of the already mentioned "tentative definitions": every .o file contains one of them, so the linker says "ok".
+
+    doesn't work, because both .o files contain a definition with a value, which collide (even if they have the same value) - there may be only one with any given name in all .o files which are linked together at a given time.
+
+    works of course, because you have only one .o file and so no possibility for collision.
+
+IMHO a clean thing would be
+
+    to put either extern int i; or just int i; into the header file,
+    and then to put the "real" definition of i (namely int i = 100;) into file1.c. In this case, this initialization gets used at the start of the program and the corresponding line in main() can be omitted. (Besides, I hope the naming is only an example; please don't name any global variables as i in real programs.)
+
+
+
+************************************************* NOTE ******************************************************************
+
+		
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

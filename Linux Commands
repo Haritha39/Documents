@@ -1,0 +1,54 @@
+
+To know the version of ubuntu you are currently using :
+
+$ lsb-release -a
+
+To see contents in a file :
+
+$ cat filename
+
+To edit the contents in a file :
+
+$ cat >> filename
+
+To auotmatically create a file and enter data using vi editor:
+
+$ vi filename
+
+To see the staus of running linux processes
+
+$ top 
+
+To open sublime text editor  :
+
+$ subl
+
+TO knwo version of sublime :
+
+$ subl --version
+
+TO resolve the problem of unmet dependencies with apt-get :
+
+$ LC_MESSAGES=C dpkg-divert --list '*nvidia-340*' | sed -nre 's/^diversion of (.*) to .*/\1/p' | xargs -rd'\n' -n1 -- sudo dpkg-divert --remove
+
+$ sudo apt --fix-broken install
+
+TO check that which servers using which ports :
+
+$ sudo netstat -plnt
+
+Entertaining command :
+
+$ sl
+
+  - show a train traveling
+
+
+TO make pip3 to work with sudo like sudo pip3 package name:
+
+https://stackoverflow.com/questions/30993086/pip3-command-not-found-but-python3-pip-is-already-installed 
+
+
+
+To know what ports are allcoated by what servers:
+https://www.cyberciti.biz/faq/unix-linux-check-if-port-is-in-use-command/

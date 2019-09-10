@@ -1,0 +1,27 @@
+TO stop ubuntu to talk :
+
+alt + superbutton + S
+It can be used for both operations of to start and to stop the ubuntu to talk .
+
+After stopped , it will tell screen reader off .
+
+
+All English words sentence :
+
+The quick brown fox jumps on the lazy dog .
+
+To get the platform or tool to run your program in sublime text editor : or to run your program
+
+Enter :  ctrl + b
+
+To get list of programs you already ran or writting in sublime  :
+
+Enter : ctrl + p
+
+TO check which groups you are there in your system (ex :whether you are in the list of sudo users):
+
+$ groups
+
+to check you are an sudo user
+
+$ sudo -v

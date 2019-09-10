@@ -1,0 +1,31 @@
+https://developer.ibm.com/code/2017/07/13/step-step-guide-running-gitlab-ce-docker/
+
+https://docs.gitlab.com/omnibus/docker/
+
+docker pull gitlab/gitlab-ce     => for community enterprise 
+
+sudo docker run --name gitlab --hostname gitlab.search.com -p 30080:30080 -p 30022:30022 --restart always --volume /srv/gitlab/config:/etc/gitlab --volume /srv/gitlab/logs:/var/log/gitlab --volume /srv/gitlab/data:/var/opt/gitlab --env GITLAB_OMNIBUS_CONFIG="external_url 'http://192.168.2.96:30080';gitlab_rails['gitlab_shell_ssh_port']=30022;" gitlab/gitlab-ce
+
+to access the data stored in host volume
+
+go to /srv/gitlab
+
+have to give permissions to every folder to access it
+
+by :
+
+sudo chmod 407 dirname
+
+
+
+EVENTS :
+
+
+tag event :
+
+	Tagging is done with git tag, and the tags that are created using git tag are the base for the commit identifiers git describe creates. In another words, in Git you don't tag branches. You are tagging commits. It is correct to say that tag is just an annotated pointer to a commit.
+
+
+
+private access tokens : umhv57Wux3_s-Dr3Lccx 
+FiavLZJccxT3HKaUg_gZ

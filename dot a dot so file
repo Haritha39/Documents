@@ -1,0 +1,80 @@
+
+see this link everything is there in it 
+
+http://www.yolinux.com/TUTORIALS/LibraryArchives-StaticAndDynamic.html
+
+http://docencia.ac.upc.edu/FIB/USO/Bibliografia/unix-c-libraries.html#using_static_archive
+
+https://stackoverflow.com/questions/15059859/issues-with-ld-and-static-library-undefined-reference-to
+
+
+-Wall = enable all warnings
+-Wextra = enable more warnings
+
+
+There are two kinds of librabries in linux
+
+1) Static libraries - archive libraries
+
+2) Dynamic libraries - shared components
+
+
+Static libraries :
+
+.a extension files are static files .
+
+.a files means archive files .
+
+these files contain the compiled .o object file.
+
+to list out the files in .a file
+
+ar -t filename.a
+
+two methods :
+
+file : rough.c
+
+method I :
+
+gcc -c rough.c
+
+>> gives rough.o
+
+ar -cvq (name you wish to put for the archive file) (.o files)
+
+ar -cvq rough.a rough.o
+
+now 
+
+gcc -o rough.out rough.a          or
+gcc rough.a
+
+>> gives output
+
+method II :
+
+gcc -c rough.c
+
+ar -cvq librough.a rough.o
+
+gcc -o rough.out -L/pathto.afiledirectory -lrough.a
+
+
+This second method may give ld error so what you have to do is
+
+gcc -Isrc rough.c -o rough.out /home/haritha/Intern/rough/rough.a
+
+>>  -Isrc tells source dir to lib directory
+>>  this will give correct result
+
+The 'c' flag tells ar to create the library if it doesn't already exist. 
+The 'r' flag tells it to replace older object files in the library, with the new object files.
+
+
+
+
+
+
+
+

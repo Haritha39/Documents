@@ -1,0 +1,26 @@
+
+
+pipeline ante am ledhu.....
+OKa project ni ila ila run avu ani manam steps cheptham
+
+build 
+test
+deploy
+
+first pipeline cheyalante :
+
+.gitlab-ci.yml file create chesi jobs rayali
+
+before_script and after_script anevi untay avi define cheskovli
+
+job ante oka name oka setof steps ila jaraglai ani rastam . adhi branch name kuda avacuh ..manaki ardham aye dhani bati..
+
+Runner run cheyali ante :
+
+docker run -d --name gitlab-runner --restart always    -v /srv/gitlab-runner/config:/etc/gitlab-runner    -v /var/run/docker.sock:/var/run/docker.sock    gitlab/gitlab-runner:latest
+
+to register runner :
+
+docker run --rm -t -i -v /srv/gitlab-runner/config:/etc/gitlab-runner gitlab/gitlab-runner register
+
+give your gitlab link and token from runners section in your gitlab-ce

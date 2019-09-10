@@ -1,0 +1,101 @@
+https://opensource.com/article/17/11/how-use-cron-linux
+
+
+IF we want to run something at specific time by not exclusively telling everytime we need a schedular so that we can fix the time and that schedular runs that job at that time .
+
+IN linux we have cron as a schedular .
+
+it works on cron daemon.
+
+Cron daemon starts working when system boots up and checks every second for tthe crontab files.if present it execute
+
+
+cron is tthe tool name
+
+crontab is the table that holds our jobs,.
+
+Anacron is one of the job schedular.
+
+AT is also a schedilar but runs only once
+
+Two:
+
+system jobs
+
+user jobs
+
+System jobs :
+-------------
+fiiles: /etc/crontab
+
+it is used for administrator
+
+intially the inbuilt system backup , update jobs will be there in system.
+
+YOu can define yours by opening :
+
+$ sudo crontab -e
+
+crontab means cron table
+
+-e for edit
+
+-l for listing crontabs
+
+in that you will be having 6 feilds
+
+minutes hours dayofmonth monthofyear weekday command
+
+job start at that hour:minute 
+
+dayofmonth : paricular day
+
+monthofyear : month number
+
+weekday: number to a day
+
+		1 for monday so...on 5 for friday likewise
+
+command : any shell command
+
+ +---------------- minute (0 - 59)
+ |  +------------- hour (0 - 23)
+ |  |  +---------- day of month (1 - 31)
+ |  |  |  +------- month (1 - 12)
+ |  |  |  |  +---- day of week (0 - 6) (Sunday=0 or 7)
+ |  |  |  |  |
+ *  *  *  *  *  command to be executed
+
+
+
+crontab files for sysytem jobs will be stored in /etc/ inside cron.d or cron.daily cron.weekly etc
+
+
+User jobs :
+-----------
+
+unlike system jobs there crontabs will be stored in
+
+/var/spool/cron/crontabs
+
+if you write a individual crontab iwll be stored in tabs under the specified user 
+
+ls crontabs/
+
+haritha root
+
+For user jobs, cron daemon checks in /var/cron.allow and /var/corn.deny to check for to permit whom and not whom
+with the sysytem we will get only cron.deny is lpresent
+
+you can write cron.allow , if you write then cron.deny will not work
+
+
+USES:
+-----
+
+
+1) Backup at nights
+2) update at particular time
+
+
+

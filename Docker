@@ -1,0 +1,246 @@
+
+Follow the links :
+
+https://docs.docker.com/engine/docker-overview/
+https://docs.docker.com/engine/reference/commandline/docker/
+
+
+First need to understand what is virtualization :
+
+Docker is used for creating a virual environment for performing our own task without disturbing the system.
+
+It can be called as container which contains all the libraries , packages , code everything regarding our project.
+
+Because every machine may not have the capacity or previliges to run a project successfully so if there is a perfect package where you can have all rewuirements regarding your project  , you will be happy and comfortable in running it .
+
+There will be three parts :
+
+docker clients
+	- pull
+	- build
+	- run
+docker host
+	docker daemon
+docker registry
+ 	- stores the images 
+
+
+To get your docker information:
+
+$ docker info
+
+
+To see all docker images you have  :
+
+$ docker images
+
+
+To see currently running containers :
+
+$ docker ps
+
+
+To see containers in docker :
+
+$ docker ps -a
+
+
+
+To Build  a Image
+
+$ docker build -t containername .
+
+
+In this we create images , containers etc 
+
+containers are the instances of images.
+
+Image     =  class
+container =  object
+
+we create image by built command 
+we create container by run command
+
+can compare docker with git.
+
+like git , here also we have local and global repos
+
+you can put your images in the dockerhub 
+or you can just use yourself
+
+
+the tag will be default to latest
+
+for comments use '#'
+
+
+RUN command builds or create the image layer of that specific command
+CMD command doesnt create any layer just executes
+
+
+To get a bash shell (terminal)  in the ubuntu inside the docker .
+
+Dockfile :
+
+FROM ubuntu:latest
+
+RUN echo "hello world"
+
+RUN mkdir -p /home/ubuntu/foldername
+
+RUN bash
+
+save it with 'Dockerfile' and build it :
+
+
+$ docker build -t terminal .
+
+run it
+
+$ docker run -it terminal
+
+it will directly opens the ubuntu's shell inside the docker into your current terminal
+
+do update and upgrade
+
+
+Should know diff between COPY and ADD :
+
+COPY is preferable than ADD .
+For only remote url access or tar file autoextraciton is the concern with ADD , you can use wget or curl instead them .
+
+https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
+
+
+Diff b/w Parent Image and Base Image :
+
+
+The image that is we are using in the base image is called parent image.
+
+The content in the FROM line is the parent image .
+
+That line will be the base image for our image we are creating.
+
+next lines in the docker file will work or modifies  the parent image 
+
+
+##############################################################################################################
+
+Diff b/w Shell form and exec form :
+
+http://goinbigdata.com/docker-run-vs-cmd-vs-entrypoint/
+
+shell form : <instruction> <command>
+exec form : <instruction> <"executabel" , "para1","para2",soon>
+
+shell form directly run the command in shell platform i.e., /bin/bash -c command
+
+exec form takes the platform from the parameter executable and the runs the command .
+
+you can also use shell(bash or any sh)  as executable in your exec form as /bin/bash -c command.
+
+please read the above link
+
+
+RUN :
+
+it will install packages or libraries in a new layer and creates a new image on top of current image.
+use \ and try to install packages as a single image so that it will use cache and load a bit fast . otherwise it may take long time for creatign layer for every line .
+
+
+CMD :
+
+it is like default command that will be executed when we use docker run .
+
+if you give arguments in the command line then you will not get the default CMD executed . the command line argument overrides it .
+
+so it will not create any image , it will run at run time .
+
+ENTRYPOINT :
+
+It is similar to CMD . but it will not be overridden by command line arguments .
+
+It takes additional default arguemnts from CMD in exec form . 
+
+In shell form it will ignore CMD arguments and also command line arguments .
+
+so use this whenever you have  a command that need to be executed everytime your container is running .
+
+#####################################################################################################################
+
+EXPOSE :
+
+you are running a server with 1234 port inside a container .
+
+you want to access it from another machine then use have to write the command EXPOSE 1234 inside your dockerfile .it will tell that other containers can access that server in that particular container .
+
+while running if you give -p 8080:1234 option with docker run something.
+
+it will do that anyone can access that server with the port 8080 which is exposed with 1234 .
+
+https://we-are.bookmyshow.com/understanding-expose-in-dockerfile-266938b6a33d 
+
+Diff between expose and publish
+
+https://stackoverflow.com/questions/22111060/what-is-the-difference-between-expose-and-publish-in-docker
+
+###################################################################################################################
+
+To restart container :
+
+$ docker restart containername/id
+
+$ docker attach containername/id
+
+To remove volume :
+
+$ docker volume rm volumeid
+
+
+VOLUME :
+
+https://stackoverflow.com/questions/52862705/what-does-volume-inside-dockerfile-do
+
+You can create volume in two ways:
+
+Inside dockerfile :
+
+VOLUME /dirname
+
+this makes the /var/lib/docker/........../dirname as mounting point and stores the data inside it.
+
+to make your localhost directories as mounting point you can't do this inside the docker file .so
+
+$ docker run ..... -v /host/dir/:/destination/dir/ .....
+
+this mounts the volume inside your host directory and not in somethign else.
+
+the changes in coantainer will be cmae into host and changes in host will fo into container .
+
+
+CONTAINERS :
+
+if you want to open the shell of exited container :
+
+$ docker start containername
+
+$ docker exec -it conatinername bash
+
+To know what did you do inside the container after exited :
+
+$ docker logs containername/id
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

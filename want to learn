@@ -1,0 +1,36 @@
+General topics :
+
+    Design patterns - categories, and details
+    Solid principles
+    12 factor 
+    Logging and tracing
+    Python basics
+    Database - NoSQL/RDBMS/NewSQL - 
+    ORM/ODM
+
+
+Python:
+
+	1. Basics
+
+	2. Database interactions
+
+	3. Webservice
+
+	4. ORM/ODM
+
+	5.  Algorithms
+
+	6. Serverside Rendering
+
+	7. List of available framework for web services/web pages
+
+	8. Webservers/Application servers
+
+
+Client side:
+
+    Client side rendering/Server side rendering
+    SPA
+    HTML/CSS
+    JS Basics

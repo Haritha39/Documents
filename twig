@@ -1,0 +1,41 @@
+{% set data = output_data[0] %}
+            {% set proj_count = output_data[1][0] %}
+            {% set br_count = output_data[1][1] %}
+            {% set file_count = output_data[1][2] %}
+
+            {% set num_pages = (file_count/5) | round(0,'ceil') | int %}
+            {{num_pages}}
+
+
+            {% for proj_key,proj_value in data.items() %}
+
+                {% if proj_key == "NULL" %}
+                    <div class="notfound">
+                        <h4> No Repositories found for this keyword </h4>
+                    </div>
+                {% else %}
+                    <div class="project">
+
+                        {% for br_key,br_value in proj_value.items() %}
+                            {% for file_key , file_value in br_value.items() %}
+
+                                {% for snippet_key , snippet_data in file_value.items()%}
+                                    <p>Project : {{ proj_key }} | Branch : {{ br_key }} | File : {{file_key}} </p>
+                                    {% set keys = snippet_data.keys()|sort %}
+                                    <div class="each_snippet">
+                                        {% for each_key in keys %}
+                                            <p>{{each_key}} :: {{snippet_data[each_key]}}</p>
+                                        {% endfor %}
+                                    </div>
+                                {% endfor %}
+
+                            {% endfor %}
+
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+            {{ proj_count , br_count , file_count }}
+        </div>
+
+    </div>

@@ -1,0 +1,142 @@
+
+
+Webpack is a module bundler .
+
+if we give total jdavascript fies in a project with a js file as entry , it bundles all the files .
+
+wepack - to launch webpack
+webpack-cli - to see that webpack in our terminal
+webpack-dev-server -  to update the live changes in briowser without refreshing
+
+
+
+webpack has different versions :
+webpack 1
+webpack 2 
+webpack 3 
+webpack 4 - current 
+
+
+
+
+Use :
+
+TO use it , we must initialize npm ( node package manager ) in your cuurent working directory .
+
+$ npm init
+
+it asks you some values for the given keys . just type enter and at last yes
+
+or
+
+$ npm init -y
+
+it automatically completes above works
+
+after it is initialized , package.json will be created in your current dir .
+
+Now you can install webpack :
+
+$ npm -i -D webpack 
+
+-i = install
+-D = develpemt dependencies 
+or u can use --save-dev instead of -D both are same
+
+Now in your package.json , inside dependncies object , you will get webpack  as key adn its version as value .
+
+
+scripts object in package.json you can give keysand values 
+
+keys - this is the name that we enter in console to run particular webpack command
+
+		You can give any name to them.
+
+	ex : "build":
+
+	while executing 
+
+	$ npm run build
+
+	which runs partivcular value
+
+values - command that you want to execute
+
+		ex : "webpack"
+
+		simply launches webpack i.e., bundles files
+
+		webpack4 automatically checks for source file in ./src folder for index.js and generates bundled output in ./dist/main.js
+
+		EX : "webpack --mode development"
+
+		removes warnigns and dont minifies the data , you can read by going into dist/main.js
+
+		ex : "webpack --mode production"
+		
+		minifies the code , and reduces the size also of your main js file
+
+
+
+
+If you didnt write any of these keys and values you have to run them file by urself in terminal as
+
+$ npm webpack
+
+
+IF you want to change the default settings or want to run as your wish you can wrote configuration file :
+
+the default name is webpack.config.js
+
+when you run webpcak , if this file is present it automatically goes laong with it.
+
+if you want to give your own name to the file ex : mywebpack.config.js then you have to explicity give:
+
+$ npm webpack --config mywebpack.config.js
+
+or mention inside package.json inside scripts object :
+
+"build" : "webpack --config mywebpack.config.js"
+
+
+
+IF you run the webpack-dev-server , hten you wont see the dist folder at all . IT automatically stores main.js in memory and make immediate changes to it . iF you want to see that file , u have to put '/' after in localhost:8080/ and onlu main.js in html fiel not dist/main.js while attaching the script fiel
+
+
+
+COnfiguration file :
+
+entry : at which file webpack has to start . IT takes absolute path
+
+		can be multiple entrypoints . if multiple then put them as object i.e., between {}  and  give some key name and value should be entry point
+
+output : you have to give path and filename of the file into which you want your bundle to be stored.
+		in case of multipoint entry your key in entry will be the output file name . so dont give fielname
+
+		output:{ path: ,  fielname : }
+
+modules : { rules :[ test : takes regex ex : /\.css$/ all fiels with .css,
+					 use :[ loaders in reverse format ecx; 
+							'style-loader',
+							'css-loader'
+							]]}
+plugins:{}
+
+
+
+You can get the .map file by including 
+
+devtool : 'source-maps'
+
+
+
+Genereally , breowsers understand es5 javascript only .
+
+if we write classes , arrow functiosn which are of ES6 js , the browser wont understand it and throws :
+
+uncaught exception : unidentified syntax error etc 
+
+YOu can use BABEL which is a actually a compioler whichc compiles javascript.
+
+I t converts es6 js code es5 .
+you can install it using npm

@@ -1,0 +1,12 @@
+json.dumps(varname)  -> converts any data type in python to json
+
+
+
+Of course, this is called "Serialization" - you are dumping a Python data structure into a JSON formatted string:
+
+    json.dumps()
+
+    Serialize obj to a JSON formatted str using this conversion table.
+
+If you load a JSON string with loads(), this would be "deserialization" and you would get a Python list or a dictionary.
+

@@ -1,0 +1,115 @@
+
+commits vs timestamp :
+
+select timestamp as time , commits from Commit_table;
+
+commits vs time:
+
+SELECT
+  TIMESTAMP AS "time",
+  commits
+FROM Commit
+WHERE
+  $__timeFilter(TIMESTAMP)
+ORDER BY TIMESTAMP
+
+Code Contributors vs total members :
+
+select pid as time , total_members - (select count(Commit.pid) from Project,Commit where Commit.pid = Project.pid) as non_commit from Project;
+
+status success vs timestamp:
+
+SELECT
+  TIMESTAMP AS "time",
+  count(STATUS) AS success
+FROM PROJECT
+WHERE
+  $__timeFilter(TIMESTAMP) AND STATUS = "success"
+ group by TIMESTAMP
+ ORDER BY TIMESTAMP
+
+status failed vs timestamp:
+
+SELECT
+  TIMESTAMP AS "time",
+  count(STATUS) AS failed
+FROM PROJECT
+WHERE
+  $__timeFilter(TIMESTAMP) and STATUS = "failed"
+group BY TIMESTAMP
+ORDER BY TIMESTAMP
+
+
+archived vs time
+SELECT
+  updated_at AS "time",
+  project_name as metric,
+  is_archived as archive
+FROM project
+WHERE
+  $__timeFilter(updated_at)
+ORDER BY updated_at
+
+
+SELECT
+  updated_at AS "time",
+  project_name as metric,
+  is_archived as archive
+FROM project
+WHERE
+  is_archived = 1 and
+  $__timeFilter(updated_at)
+ORDER BY updated_at
+
+correct  :select year(updated_at) as time,count(case when is_archived = 0 then 1 end) as not_archived,count(case when is_archived = 1 then 1 end) as archived from project where $__timeFilter(updated_at) group by year(updated_at);
+
+defaulter list : 
+correct : select updated_at as time , user_name as metric , count(user_id) from defaulter_list where $__timeFilter(updated_at) group by user_name ,updated_at ;
+
+
+
+
+
+
+
+project contr vst time
+
+fake : select updated_at as time ,project_name as metric , total_members-(select count(user_id) from c_t,project where c_t.proj_id=project.proj_id) from project;
+
+correct : select year(timestamp)as time, project_name as metric,count(distinct user_id) from c_t where $__timeFilter(timestamp) group by project_name,year(timestamp);
+
+
+personwise commits :
+
+correct : SELECT
+  year(timestamp) AS "time",
+  username as metric,
+  count(username)
+FROM c_t
+WHERE
+  $__timeFilter(timestamp)
+group by year(timestamp) , username ;
+
+project wise commits :
+SELECT
+  year(timestamp) AS "time",
+  project_name as metric,
+  count(project_name)
+FROM c_t
+WHERE
+  $__timeFilter(timestamp)
+group by year(timestamp),project_name;
+
+
+pipeline status commits:
+correct : select year(timestamp) as time,pipeline_status as metric , count(pipeline_status) from c_t where $__timeFilter(timestamp) group by year(timestamp),pipeline_status;
+
+
+for pipelines sttaus:
+select (@row:=@row+1) as Sno,pipeline_status as "Pipeline Status", count(pipeline_status) as "Number of commits" from c_t ,(select @row:=0) as rowcount group by pipeline_status;
+
+
+ggrafana username = admin 
+		password =  mariners or admin	
+
+https://stackoverflow.com/questions/54813704/how-to-add-dashboard-configuration-json-file-in-grafana-image/54816584

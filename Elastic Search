@@ -1,0 +1,278 @@
+
+These links are enough
+
+https://www.elastic.co/
+https://www.elastic.co/guide/en/elasticsearch/reference/current/getting-started-create-index.html
+https://www.youtube.com/watch?v=8r_IMTerZSY
+https://dzone.com/articles/what-is-elasticsearch-and-how-it-can-be-useful
+https://www.datadoghq.com/blog/monitor-elasticsearch-performance-metrics/
+
+For Elastic Search 5.6.14 version you have to authenticate :
+username : elastic
+passwd : changeme
+
+ "Elasticsearch" is not case-sensitive. 
+
+ELK stack - Elastic search , Logstash , Kibhana
+
+Elastic search is used for searching .
+
+You can analyze data through elastic search .
+
+It is implemented in java upon apache lucene server .
+
+Elasticsearch is a database that stores, retrieves, and manages document-oriented and semi-structured data.
+
+Elastic search is a NoSQL database .
+
+NoSQL : Database which is not sql means not RDBMS . No tables etc . Searches fast . ex : mongodb
+
+Elastic search is like a REST API .
+
+
+    Index API – Used to document the Index
+    Get API – Used to retrieve the document
+    Search API – Used to submit your query and get the result
+    Put Mapping API – Used to override default choices and define our own mapping
+
+
+API's :
+_cat
+_update
+_bulk
+_search
+
+
+RDMBS ——-> Database NoSql→ Index
+
+RDBMS— > Table NoSql→ Mapping
+
+RDBMS→ Rows NoSql→ Documents
+
+RDBMS → Columns NoSql —→ Fields
+
+Telugu :
+
+Idhi kuda sql lane but diniki schema undadhu .
+
+RDBMS lo database elano ikada index .
+
+akada tables elano ala ikada types .
+
+akada row ikada document .
+
+
+Idhi oka document
+(idhi oka table)"mappings":{
+				 		"post":{
+							"properties":{
+								"user_id":{"type":"integer"},
+								"post_text":{"type":"text"}
+
+									 	 }
+								}
+
+						   }	
+
+{} - denotes an object with key value pair.
+[] - denotes a list.
+
+
+index lo documents untay .
+documents ni spilt chesthadhi groups ga ave shards.
+Group of shards index ivani cluster lo intay ante cluster dwara ani operations like indexing and searching chesthav.
+Shards ki replicas untay ante oka shard down aithe dhani replica ni use cheskovachu.
+
+Each Elasticsearch shard is a Lucene index. There is a maximum number of documents you can have in a single Lucene index. As of LUCENE-5843, the limit is 2,147,483,519 (= Integer.MAX_VALUE - 128) documents. You can monitor shard sizes using the _cat/shards API.
+
+
+
+node is an instance of cluster
+
+_cat API is an api which we will use here to do our operations.
+
+By default, Elasticsearch uses port 9200 to provide access to its REST API. This port is configurable if necessary.
+
+
+Elastic Search Ex :
+
+    You can find out threats in logs or a bunch of code using this .
+
+For that purpose it has two tools :
+
+Khibana , logstash together known as ELK Stack
+
+Like google , when we are typing the keyword to searching we can get the suggestion using elastic search which is called Auto Complete & Instant search.
+
+In normal Relational database , there will tables and each row represent a useful data of an entity.
+
+Ex :
+
+id    name
+1     haritha
+2     harika
+Compared to that , IN elastic search the data will be stored in JSON format in a document.
+
+Ex :
+
+{
+"id":1
+"name":"haritha"
+
+}
+
+
+You can have different documents for different sections in your data .
+
+Compared to RDBMS , the types or different sections in elastic search can be compared with the tables in RDBMS .
+
+Ex :
+
+In a blog spot , to store a blog post , you can use one doc for post title ,one doc for comments , one doc for authors etc .
+
+All these related documents are called Index .
+
+Compared to RDBMS , index is like  one database .
+
+Index can have a name .
+
+
+
+go into bin dir of your elasticsearch folder:
+
+You can access the elastic search running in your computer using curl or khibhana either of them will work.
+
+TO RUN :
+
+./elasticsearch
+
+To give both cluster and node name along with running :
+
+./elasticsearch -Ecluster.name=Clustername -Enode.name=nodename
+
+Using curl :
+
+To check whether our cluster is going well or cluster details:
+
+$ curl -X GET localhost:9200/_cat/health?v
+
+TO check how many nodes are there or node details:
+
+$ curl -X GET localhost:9200/_cat/nodes?v
+
+To check No.of indices :
+
+$ curl -X GET localhost:9200/_cat/indices?v
+
+To create an index(database in RDBMS ) :
+
+$ curl -X PUT "localhost:9200/indexname?pretty"
+
+By default, each index in Elasticsearch is allocated 5 primary shards and 1 replica which means that if you have at least two nodes in your cluster, your index will have 5 primary shards and another 5 replica shards (1 complete replica) for a total of 10 shards per index. 
+
+
+pretty is : It will format the text or anything in json or etc .pretty print json response 
+
+To list the indices :
+
+$ curl -X GET "localhost:9200/_cat/indices?v"
+
+To see information inside the index :
+
+$ curl -X GET localhost:9200/indexname?pretty
+
+
+TO create a document inside index and enter some data :
+
+curl -X PUT "localhost:9200/indexname/documentname/documentid?pretty" -H 'Content-Type: application/json' -d'{  "name": "John Doe" }'
+
+This will create a document with id doc1 .
+
+To see your document details :
+
+$ curl -X GET localhost:9200/indexname/documentname/documentid?pretty
+
+
+To delete index :
+
+curl -X DELETE "localhost:9200/indexname?pretty"
+curl -X GET "localhost:9200/_cat/indices?v"
+
+If we study the above commands carefully, we can actually see a pattern of how we access data in Elasticsearch. That pattern can be summarized as follows:
+
+<HTTP Verb> /<Index>/<Type>/<ID>
+
+This REST access pattern is so pervasive throughout all the API commands that if you can simply remember it, you will have a good head start at mastering Elasticsearch.
+
+When indexing, the ID part is optional. If not specified, Elasticsearch will generate a random ID and then use it to index the document.
+
+you can replace the existing id data with another using PUT .
+
+if id not specified , you should use POST .
+
+
+
+You can update the document using _update :
+
+curl -X POST "localhost:9200/family/doc1/1/_update?pretty" -H 'Content-Type: application/json' -d'
+{
+  "doc": { "father": "Srinivas" }
+}
+'
+
+in above command "doc" should be there .
+
+To delete a document :
+
+curl -X DELETE "localhost:9200/family/doc1/1?pretty"
+
+
+You can do multiple operations using _bulk API :
+
+curl -X POST "localhost:9200/customer/_doc/_bulk?pretty" -H 'Content-Type: application/json' -d'
+{"index":{"_id":"1"}}
+{"name": "John Doe" }
+{"index":{"_id":"2"}}
+{"name": "Jane Doe" }
+'
+
+You can create a file with .json extension and can use in -d option .
+
+
+
+INVERTED INDEX :
+
+https://www.elastic.co/guide/en/elasticsearch/guide/current/inverted-index.html
+
+
+unique words ani oka line lo petukuni . every word eni documents lo vachindo store chestadhi . so search chese tapudu ha document chesthe saripothundhi
+
+
+
+
+Elasticsearch is in default case-insenstive when you created a index.
+
+You my change other settings of your index after it is created .
+
+But you cannot update the data type of your fields onec you created a index .
+
+So you have to give the settings whenever you created a index .
+
+below code for setting the filepath feild datatype to keyword for exact matchign :
+
+res = es.indices.create(index = "projects" , body = {"mappings":{"project1":{"_source":{"enabled":True},"properties":{"filepath":{"type": "keyword"}}}}})
+
+https://www.pmg.com/blog/elasticsearch-term-terms-query-not-working/
+
+
+
+
+
+
+
+
+
+
+
+
+
