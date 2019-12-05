@@ -1,0 +1,18 @@
+js = javascript
+ts = typescript
+
+jsx = html + javascript 
+JSX is an XML/HTML-like syntax used by React that extends ECMAScript so that XML/HTML-like text can co-exist with JavaScript/React code. ... Unlike the past, instead of putting JavaScript into HTML, JSX allows us to put HTML into JavaScript.
+
+React js: React is a JavaScript library for building user interfaces.React is a JavaScript library for building user interfaces.
+
+React native : React Native is an open-source mobile application framework created by Facebook. It is used to develop applications for Android, iOS, Web and UWP by enabling developers to use React along with native platform capabilities.
+
+Nodejs : Node.js is an open-source, cross-platform, JavaScript run-time environment that executes JavaScript code outside of a browser.
+
+		nodejs  		= Java runtime envorment
+		v8      		= jvm
+		node modules 	= libraries/classes
+
+jvm 	for java
+nodejs 	for javascript 
